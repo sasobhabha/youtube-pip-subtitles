@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube PiP Subtitles",
+  "version": "1.0.0",
+  "description": "Picture-in-Picture for YouTube videos & Shorts with synced subtitles in the floating window.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["*://*.youtube.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "YouTube PiP Subtitles",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "commands": {
+    "toggle-pip": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "MacCtrl+Shift+P"
+      },
+      "description": "Open YouTube PiP with subtitles"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
